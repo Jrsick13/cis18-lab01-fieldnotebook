@@ -3,7 +3,6 @@ package fieldnotebook;
 import java.time.LocalDate;
 
 public class Sighting implements Describable {
-    // 1. Mark fields as private (or protected for child access)
     private String species;
     private int count;
     private LocalDate when;
@@ -20,7 +19,6 @@ public class Sighting implements Describable {
         this(species, count, when, "");
     }
 
-    // 2. Add explicit getter methods
     public String getSpecies() {
         return species;
     }
@@ -39,6 +37,7 @@ public class Sighting implements Describable {
 
     @Override
     public String describe() {
-        return String.format("%dx %s on %s", count, species, when);
+        String detail = notes.isEmpty() ? "" : " (" + notes + ")";
+        return String.format("%s count=%d when=%s%s", species, count, when, detail);
     }
 }

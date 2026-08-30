@@ -3,28 +3,20 @@ package fieldnotebook;
 import java.time.LocalDate;
 
 public class BirdSighting extends Sighting {
-    private boolean heardOnly;
+    private boolean vocalizing;
 
-    public BirdSighting(String species, int count, LocalDate when, boolean heardOnly, String notes) {
+    public BirdSighting(String species, int count, LocalDate when, String notes, boolean vocalizing) {
         super(species, count, when, notes);
-        this.heardOnly = heardOnly;
+        this.vocalizing = vocalizing;
     }
 
-    public BirdSighting(String species, int count, LocalDate when, boolean heardOnly) {
-        this(species, count, when, heardOnly, "");
-    }
-
-    public BirdSighting(String species, int count, LocalDate when) {
-        this(species, count, when, false, "");
-    }
-
-    public boolean isHeardOnly() {
-        return heardOnly;
+    public boolean isVocalizing() {
+        return vocalizing;
     }
 
     @Override
     public String describe() {
-        String how = heardOnly ? "heard" : "seen";
-        return String.format("%dx %s (%s) on %s", getCount(), getSpecies(), how, getWhen());
+        String base = super.describe();
+        return vocalizing ? base + " [vocalizing]" : base;
     }
 }
